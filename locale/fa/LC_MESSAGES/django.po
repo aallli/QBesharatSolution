@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-26 20:50+0430\n"
+"POT-Creation-Date: 2020-06-28 10:21+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,25 +75,25 @@ msgstr "سامانه کیوبشارت"
 msgid "Welcome to QBesharat administration control panel"
 msgstr "به پنل مدیریت کیوبشارت خوش آمدید."
 
-#: .\QBesharat\admin.py:57
+#: .\QBesharat\admin.py:77
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: .\QBesharat\admin.py:61
+#: .\QBesharat\admin.py:81
 msgid "Address Info"
 msgstr "نشانی ها"
 
-#: .\QBesharat\admin.py:63
+#: .\QBesharat\admin.py:83
 msgid "Important dates"
 msgstr "تاریخهای مهم"
 
-#: .\QBesharat\admin.py:65
+#: .\QBesharat\admin.py:85
 #, fuzzy
 #| msgid "Version"
 msgid "Permissions"
 msgstr "ویرایش"
 
-#: .\QBesharat\admin.py:67
+#: .\QBesharat\admin.py:87
 msgid "Sensitive Info"
 msgstr "اطلاعات حساس"
 
@@ -101,39 +101,39 @@ msgstr "اطلاعات حساس"
 msgid "QBesharat"
 msgstr "شبکه تعاملی قرآنیان"
 
-#: .\QBesharat\models.py:24
+#: .\QBesharat\models.py:25
 msgid "Male"
 msgstr "مرد"
 
-#: .\QBesharat\models.py:25
+#: .\QBesharat\models.py:26
 msgid "Female"
 msgstr "زن"
 
-#: .\QBesharat\models.py:29 .\QBesharat\models.py:45
+#: .\QBesharat\models.py:30 .\QBesharat\models.py:46
 msgid "Name"
 msgstr "نام"
 
-#: .\QBesharat\models.py:30 .\QBesharat\models.py:47
+#: .\QBesharat\models.py:31 .\QBesharat\models.py:48
 msgid "Active"
 msgstr "فعال"
 
-#: .\QBesharat\models.py:33 .\QBesharat\models.py:46 .\QBesharat\models.py:69
+#: .\QBesharat\models.py:34 .\QBesharat\models.py:47 .\QBesharat\models.py:70
 msgid "Country"
 msgstr "کشور"
 
-#: .\QBesharat\models.py:34
+#: .\QBesharat\models.py:35
 msgid "Countries"
 msgstr "کشورها"
 
-#: .\QBesharat\models.py:50 .\QBesharat\models.py:70
+#: .\QBesharat\models.py:51 .\QBesharat\models.py:71
 msgid "City"
 msgstr "شهر"
 
-#: .\QBesharat\models.py:51
+#: .\QBesharat\models.py:52
 msgid "Cities"
 msgstr "شهرها"
 
-#: .\QBesharat\models.py:64
+#: .\QBesharat\models.py:65
 #, fuzzy
 #| msgid ""
 #| "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
@@ -143,55 +143,135 @@ msgid ""
 "allowed."
 msgstr "شماره تلفن معتبر شامل مقدار عددی حداکثر 15 رقم باید باشد."
 
-#: .\QBesharat\models.py:65
+#: .\QBesharat\models.py:66
 msgid "Mobile"
 msgstr "تلفن همراه"
 
-#: .\QBesharat\models.py:67
+#: .\QBesharat\models.py:68
 msgid "Sex"
 msgstr "جنسیت"
 
-#: .\QBesharat\models.py:71
+#: .\QBesharat\models.py:72
 #, fuzzy
 #| msgid "Creation Date"
 msgid "Birth Date"
 msgstr "تاریخ تولد"
 
-#: .\QBesharat\models.py:73
+#: .\QBesharat\models.py:74
 #, fuzzy
 #| msgid "Person"
 msgid "Profile Image"
 msgstr "تصویر شخص"
 
-#: .\QBesharat\models.py:76
+#: .\QBesharat\models.py:77
 #, fuzzy
 #| msgid "Creation Date"
 msgid "OTP Creation Date"
 msgstr "تاریخ ایجاد رمز یکبار مصرف"
 
-#: .\QBesharat\models.py:77
+#: .\QBesharat\models.py:78
 msgid "Password Reset OTP"
 msgstr "کد بازیابی رمز"
 
-#: .\QBesharat\models.py:78
+#: .\QBesharat\models.py:79
 msgid "Password Reset OTP Creation Date"
 msgstr "تاریخ ایجاد کد بازیابی رمز"
 
-#: .\QBesharat\models.py:81
+#: .\QBesharat\models.py:82
 msgid "Registered"
 msgstr "تایید شده"
 
-#: .\QBesharat\models.py:84
+#: .\QBesharat\models.py:85
 msgid "Profile"
 msgstr "پروفایل"
 
-#: .\QBesharat\models.py:85
+#: .\QBesharat\models.py:86
 msgid "Profiles"
 msgstr "پروفایلها"
 
-#: .\QBesharat\models.py:112
+#: .\QBesharat\models.py:113
 msgid "Image"
 msgstr "تصویر"
+
+#: .\QBesharat\models.py:159 .\QBesharat\models.py:166
+msgid "Memorizer skill"
+msgstr "مهارتهای حفظ"
+
+#: .\QBesharat\models.py:160 .\QBesharat\models.py:187
+msgid "Parts"
+msgstr "جزء"
+
+#: .\QBesharat\models.py:162 .\QBesharat\models.py:177
+#: .\QBesharat\models.py:205
+msgid "Awards"
+msgstr "جوایز"
+
+#: .\QBesharat\models.py:163 .\QBesharat\models.py:178
+#: .\QBesharat\models.py:206
+msgid "Certificates"
+msgstr "گواهینامه ها"
+
+#: .\QBesharat\models.py:167
+msgid "Memorizers skill"
+msgstr "مهارتهای حفظ"
+
+#: .\QBesharat\models.py:171 .\QBesharat\models.py:181
+#: .\QBesharat\models.py:182
+msgid "Qari skill"
+msgstr "مهارتهای قرائت"
+
+#: .\QBesharat\models.py:172
+msgid "Fluent Reading"
+msgstr "روانخوانی"
+
+#: .\QBesharat\models.py:173
+msgid "Tahdir"
+msgstr "تحدیر"
+
+#: .\QBesharat\models.py:174
+msgid "Tartil"
+msgstr "ترتیل"
+
+#: .\QBesharat\models.py:175
+msgid "Research"
+msgstr "تحقیق"
+
+#: .\QBesharat\models.py:176 .\QBesharat\models.py:204
+msgid "Courses"
+msgstr "دوره های گذرانده"
+
+#: .\QBesharat\models.py:186 .\QBesharat\models.py:193
+#: .\QBesharat\models.py:194
+msgid "Concepts skill"
+msgstr "مهارتهای مفاهیم"
+
+#: .\QBesharat\models.py:189
+msgid "Interpretation"
+msgstr "تفسیر"
+
+#: .\QBesharat\models.py:190
+msgid "Translation"
+msgstr "ترجمه"
+
+#: .\QBesharat\models.py:198 .\QBesharat\models.py:209
+msgid "Tutor skill"
+msgstr "مهارتهای تدریس"
+
+#: .\QBesharat\models.py:199
+msgid "Grade"
+msgstr "رتبه مدرس"
+
+#: .\QBesharat\models.py:201
+msgid "Course duration"
+msgstr "مدت دوره آموزشی"
+
+#: .\QBesharat\models.py:203
+msgid "Course Content"
+msgstr "محتوای دوره آموزشی"
+
+#: .\QBesharat\models.py:210
+msgid "Tutors skill"
+msgstr "مهارتهای تدریس"
 
 #: .\QBesharat\utils.py:9
 msgid "welcome"

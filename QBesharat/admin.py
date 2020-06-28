@@ -1,9 +1,11 @@
+from django.contrib.admin import forms
+
 from QBesharat.forms import *
 from django.contrib import admin
 from django.conf import settings
 from django.contrib.auth.admin import UserAdmin
 from django_summernote.models import Attachment
-from QBesharat.models import User, City, Country
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor
 from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
 
@@ -24,6 +26,32 @@ class BaseModelAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('js/custom_admin.js',)
+
+
+class MemorizerInline(admin.StackedInline):
+    model = Memorizer
+    fields = [('parts', 'awards', 'certificates'), ]
+    insert_after_fieldset = _('Address Info')
+
+
+class QariInline(admin.StackedInline):
+    model = Qari
+    fields = [('fluent_reading', 'tahdir', 'tartil', 'research'), 'courses', 'awards', 'certificates']
+    form = QariInlineForm
+    insert_after_fieldset = _('Address Info')
+
+
+class ConceptsInline(admin.StackedInline):
+    model = Concepts
+    fields = [('interpretation', 'translation'), ]
+    form = ConceptsInlineForm
+    insert_after_fieldset = _('Address Info')
+
+
+class TutorInline(admin.StackedInline):
+    model = Tutor
+    fields = [('grade', 'course_duration', 'course_content'), 'courses', 'awards', 'certificates']
+    insert_after_fieldset = _('Address Info')
 
 
 class CityInline(admin.TabularInline):
@@ -61,14 +89,16 @@ class UserAdmin(ModelAdminJalaliMixin, UserAdmin, BaseModelAdmin):
         (_('Address Info'), {
             'fields': (('mobile', 'email'), ('country', 'city'))}),
         (_('Important dates'), {
-            'fields': (('last_login', 'date_joined'))}),
+            'fields': (('last_login_jalali', 'date_joined_jalali'),)}),
         (_('Permissions'), {
             'fields': (('is_staff', 'is_superuser'), 'groups', 'user_permissions'), }),
         (_('Sensitive Info'), {'fields': ('password',)}),
     )
     list_filter = ('country', 'city', 'sex', 'is_active', 'registered', 'is_superuser', 'groups')
     form = UserForm
-    readonly_fields = ['image_tag']
+    readonly_fields = ['image_tag', 'last_login_jalali', 'date_joined_jalali']
+    inlines = [MemorizerInline, QariInline, ConceptsInline, TutorInline]
+    change_form_template = 'admin/custom/change_form.html'
 
 
 admin.site.unregister(Attachment)

@@ -1,6 +1,5 @@
-from django import forms
 from django.contrib.auth.forms import UserChangeForm
-
+from django import forms
 from QBesharat.models import User, City
 
 
@@ -25,3 +24,21 @@ class UserForm(UserChangeForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields['city'].queryset = City.objects.filter(country=self.instance.country)
+
+
+class QariInlineForm(forms.ModelForm):
+    class Meta:
+        widgets = {
+            'fluent_reading': forms.CheckboxInput(attrs={'style': 'width:20px;height:20px;'}),
+            'tahdir': forms.CheckboxInput(attrs={'style': 'width:20px;height:20px;'}),
+            'tartil': forms.CheckboxInput(attrs={'style': 'width:20px;height:20px;'}),
+            'research': forms.CheckboxInput(attrs={'style': 'width:20px;height:20px;'}),
+        }
+
+
+class ConceptsInlineForm(forms.ModelForm):
+    class Meta:
+        widgets = {
+            'interpretation': forms.CheckboxInput(attrs={'style': 'width:20px;height:20px;'}),
+            'translation': forms.CheckboxInput(attrs={'style': 'width:20px;height:20px;'}),
+        }

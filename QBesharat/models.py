@@ -12,6 +12,7 @@ from django_resized import ResizedImageField
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 from QBesharatSolution.utlis import get_admin_url
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 locale.setlocale(locale.LC_ALL, '')
 
@@ -91,6 +92,16 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.get_full_name() or self.get_username()
 
+    def last_login_jalali(self):
+        return to_jalali_full(self.last_login)
+
+    last_login_jalali.short_description = _('last login')
+
+    def date_joined_jalali(self):
+        return to_jalali_full(self.date_joined)
+
+    date_joined_jalali.short_description = _('date joined')
+
     @property
     def image_data(self):
         if self.image:
@@ -152,3 +163,57 @@ def auto_delete_brand_image_on_change(sender, instance, **kwargs):
     except Exception as e:
         print('Delete error: %s' % e.args[0])
         return False
+
+
+class Memorizer(models.Model):
+    user = models.OneToOneField(User, verbose_name=_('Memorizer skill'), on_delete=models.CASCADE)
+    parts = models.IntegerField(verbose_name=_('Parts'), validators=[MinValueValidator(1), MaxValueValidator(30)],
+                                blank=True, null=True)
+    awards = models.CharField(verbose_name=_('Awards'), max_length=500, blank=True, null=True)
+    certificates = models.CharField(verbose_name=_('Certificates'), max_length=500, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Memorizer skill")
+        verbose_name_plural = _("Memorizers skill")
+
+
+class Qari(models.Model):
+    user = models.OneToOneField(User, verbose_name=_('Qari skill'), on_delete=models.CASCADE)
+    fluent_reading = models.BooleanField(verbose_name=_('Fluent Reading'), blank=True, null=True)
+    tahdir = models.BooleanField(verbose_name=_('Tahdir'), blank=True, null=True)
+    tartil = models.BooleanField(verbose_name=_('Tartil'), blank=True, null=True)
+    research = models.BooleanField(verbose_name=_('Research'), blank=True, null=True)
+    courses = models.CharField(verbose_name=_('Courses'), max_length=500, blank=True, null=True)
+    awards = models.CharField(verbose_name=_('Awards'), max_length=500, blank=True, null=True)
+    certificates = models.CharField(verbose_name=_('Certificates'), max_length=500, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Qari skill")
+        verbose_name_plural = _("Qari skill")
+
+
+class Concepts(models.Model):
+    user = models.OneToOneField(User, verbose_name=_('Concepts skill'), on_delete=models.CASCADE)
+    interpretation = models.BooleanField(verbose_name=_('Interpretation'), blank=True, null=True)
+    translation = models.BooleanField(verbose_name=_('Translation'), blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Concepts skill")
+        verbose_name_plural = _("Concepts skill")
+
+
+class Tutor(models.Model):
+    user = models.OneToOneField(User, verbose_name=_('Tutor skill'), on_delete=models.CASCADE)
+    grade = models.IntegerField(verbose_name=_('Grade'), validators=[MinValueValidator(1), MaxValueValidator(10)],
+                                blank=True, null=True)
+    course_duration = models.IntegerField(verbose_name=_('Course duration'),
+                                          validators=[MinValueValidator(1), MaxValueValidator(400)],
+                                          blank=True, null=True)
+    course_content = models.CharField(verbose_name=_('Course Content'), max_length=2000, blank=True, null=True)
+    courses = models.CharField(verbose_name=_('Courses'), max_length=500, blank=True, null=True)
+    awards = models.CharField(verbose_name=_('Awards'), max_length=500, blank=True, null=True)
+    certificates = models.CharField(verbose_name=_('Certificates'), max_length=500, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Tutor skill")
+        verbose_name_plural = _("Tutors skill")

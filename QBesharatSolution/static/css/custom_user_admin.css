@@ -1,3 +1,17 @@
+.inline-related.dynamic-memorizer h3,
+.inline-related.dynamic-qari h3,
+.inline-related.dynamic-concepts h3,
+.inline-related.dynamic-tutor h3,
 .inline-related.dynamic-profile h3 {
     display: none;
+}
+
+.fieldBox.field-last_login_jalali,
+.fieldBox.field-date_joined_jalali {
+    white-space: nowrap;
+    padding-left: 30px;
+}
+
+.vCheckboxLabel.inline {
+    white-space: nowrap;
 }

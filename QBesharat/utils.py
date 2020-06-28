@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 def to_jalali_full(date):
-    return datetime2jalali(date).strftime('%H:%M:%S %y/%m/%d')
+    return datetime2jalali(date).strftime('%H:%M:%S %Y/%m/%d')
 
 
 msgid = _("welcome")

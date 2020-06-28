@@ -1,9 +1,0 @@
-{# User change form uses admin/jalali_change_form.html due to inheriting ModelAdminJalaliMixin #}
-
-{% extends "admin/auth/user/add_form.html" %}
-{% load static %}
-{% block extrahead %}{{ block.super }}
-    <script>
-        var url = "{% url 'ajax_load_cities' %}";
-    </script>
-{% endblock %}
