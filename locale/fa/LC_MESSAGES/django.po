@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 08:02+0430\n"
+"POT-Creation-Date: 2020-07-07 19:45+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,38 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: .\Assets\App and Model Reordering\templates\admin\reordered_app_list.html:9
+#: .\static\admin\reordered_app_list.html:9
 #: .\templates\admin\reordered_app_list.html:9
 #, python-format
 msgid "Models in the %(name)s application"
 msgstr "مدل در برنامه %(name)s"
 
 #: .\Assets\App and Model Reordering\templates\admin\reordered_app_list.html:19
+#: .\static\admin\reordered_app_list.html:19
 #: .\templates\admin\reordered_app_list.html:19
 msgid "Add"
 msgstr "اضافه کردن"
 
 #: .\Assets\App and Model Reordering\templates\admin\reordered_app_list.html:25
+#: .\static\admin\edit_inline\tabular.html:34
+#: .\static\admin\reordered_app_list.html:25
 #: .\templates\admin\edit_inline\tabular.html:34
 #: .\templates\admin\reordered_app_list.html:25
 msgid "View"
 msgstr "مشاهده"
 
 #: .\Assets\App and Model Reordering\templates\admin\reordered_app_list.html:27
+#: .\static\admin\edit_inline\tabular.html:34
+#: .\static\admin\reordered_app_list.html:27
 #: .\templates\admin\edit_inline\tabular.html:34
 #: .\templates\admin\reordered_app_list.html:27
 msgid "Change"
 msgstr "تغییر"
 
 #: .\Assets\App and Model Reordering\templates\admin\reordered_app_list.html:38
+#: .\static\admin\reordered_app_list.html:38
 #: .\templates\admin\reordered_app_list.html:38
 msgid "You don't have permission to view or edit anything."
 msgstr "شما مجوز مشاهده یا تغییر ندارید."
 
-#: .\QBesharatSolution\settings.py:134 .\templates\admin\base_site.html:182
+#: .\QBesharatSolution\settings.py:134 .\static\admin\base_site.html:196
+#: .\templates\admin\base_site.html:196
 msgid "En"
 msgstr "انگلیسی"
 
-#: .\QBesharatSolution\settings.py:135 .\templates\admin\base_site.html:188
+#: .\QBesharatSolution\settings.py:135 .\static\admin\base_site.html:202
+#: .\templates\admin\base_site.html:202
 msgid "Fa"
 msgstr "فارسی"
 
@@ -58,90 +67,90 @@ msgstr "فارسی"
 #, fuzzy
 #| msgid "QBesharatSolution Administration Site"
 msgid "QBesharat Administration Site"
-msgstr "سامانه کیوبشارت"
+msgstr "مدیریت سامانه تعاملی قرآنیان"
 
 #: .\QBesharatSolution\urls.py:27
 #, fuzzy
 #| msgid "Welcome to QBesharatSolution administration control panel"
 msgid "Welcome to QBesharat administration control panel"
-msgstr "به پنل مدیریت کیوبشارت خوش آمدید."
+msgstr "به بخش مدیریت سامانه تعاملی قرآنیان خوش آمدید."
 
-#: .\QBesharatSolution\utlis.py:83
+#: .\QBesharatSolution\utlis.py:80
 msgid "Error in updating online support operator"
 msgstr "خطا در به روز رسانی اپراتور پشتیبانی"
 
-#: .\QBesharatSolution\utlis.py:96
+#: .\QBesharatSolution\utlis.py:93
 msgid "Error in getting online support operator"
 msgstr "خطا در دریافت اطلاعات اپراتور پشتیبانی"
 
-#: .\QBesharatSolution\utlis.py:113
+#: .\QBesharatSolution\utlis.py:110
 msgid "Subscribing user in chat server failed. Try later"
 msgstr "ایجاد اپراتور پشتیبانی انجام نشد! لطفا مجدد تلاش کنید."
 
-#: .\QBesharatSolution\utlis.py:130
+#: .\QBesharatSolution\utlis.py:127
 msgid "Unsubscribing user from chat server failed. Try later"
 msgstr "حذف اپراتور پشتیبانی انجام نشد! لطفا مجدد تلاش کنید."
 
-#: .\QBesharat\admin.py:37 .\QBesharat\admin.py:44 .\QBesharat\admin.py:51
-#: .\QBesharat\admin.py:57 .\QBesharat\admin.py:92
+#: .\QBesharat\admin.py:34 .\QBesharat\admin.py:41 .\QBesharat\admin.py:48
+#: .\QBesharat\admin.py:54 .\QBesharat\admin.py:89
 msgid "Address Info"
 msgstr "نشانی ها"
 
-#: .\QBesharat\admin.py:88
+#: .\QBesharat\admin.py:85
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: .\QBesharat\admin.py:94
+#: .\QBesharat\admin.py:91
 msgid "Important dates"
 msgstr "تاریخهای مهم"
 
-#: .\QBesharat\admin.py:96
+#: .\QBesharat\admin.py:93
 #, fuzzy
 #| msgid "Version"
 msgid "Permissions"
 msgstr "ویرایش"
 
-#: .\QBesharat\admin.py:98
+#: .\QBesharat\admin.py:95
 msgid "Sensitive Info"
 msgstr "اطلاعات حساس"
 
 #: .\QBesharat\apps.py:7
 msgid "QBesharat"
-msgstr "شبکه تعاملی قرآنیان"
+msgstr "سامانه تعاملی قرآنیان"
 
-#: .\QBesharat\models.py:22
+#: .\QBesharat\models.py:21
 msgid "Male"
 msgstr "مرد"
 
-#: .\QBesharat\models.py:23
+#: .\QBesharat\models.py:22
 msgid "Female"
 msgstr "زن"
 
-#: .\QBesharat\models.py:27 .\QBesharat\models.py:43
+#: .\QBesharat\models.py:26 .\QBesharat\models.py:42
 msgid "Name"
 msgstr "نام"
 
-#: .\QBesharat\models.py:28 .\QBesharat\models.py:45
+#: .\QBesharat\models.py:27 .\QBesharat\models.py:44
 msgid "Active"
 msgstr "فعال"
 
-#: .\QBesharat\models.py:31 .\QBesharat\models.py:44 .\QBesharat\models.py:67
+#: .\QBesharat\models.py:30 .\QBesharat\models.py:43 .\QBesharat\models.py:66
 msgid "Country"
 msgstr "کشور"
 
-#: .\QBesharat\models.py:32
+#: .\QBesharat\models.py:31
 msgid "Countries"
 msgstr "کشورها"
 
-#: .\QBesharat\models.py:48 .\QBesharat\models.py:68
+#: .\QBesharat\models.py:47 .\QBesharat\models.py:67
 msgid "City"
 msgstr "شهر"
 
-#: .\QBesharat\models.py:49
+#: .\QBesharat\models.py:48
 msgid "Cities"
 msgstr "شهرها"
 
-#: .\QBesharat\models.py:62
+#: .\QBesharat\models.py:61
 #, fuzzy
 #| msgid ""
 #| "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
@@ -151,141 +160,141 @@ msgid ""
 "allowed."
 msgstr "شماره تلفن معتبر شامل مقدار عددی حداکثر 15 رقم باید باشد."
 
-#: .\QBesharat\models.py:63
+#: .\QBesharat\models.py:62
 msgid "Mobile"
 msgstr "تلفن همراه"
 
-#: .\QBesharat\models.py:65
+#: .\QBesharat\models.py:64
 msgid "Sex"
 msgstr "جنسیت"
 
-#: .\QBesharat\models.py:69
+#: .\QBesharat\models.py:68
 #, fuzzy
 #| msgid "Creation Date"
 msgid "Birth Date"
 msgstr "تاریخ تولد"
 
-#: .\QBesharat\models.py:71
+#: .\QBesharat\models.py:70
 #, fuzzy
 #| msgid "Person"
 msgid "Profile Image"
 msgstr "تصویر شخص"
 
-#: .\QBesharat\models.py:74
+#: .\QBesharat\models.py:73
 #, fuzzy
 #| msgid "Creation Date"
 msgid "OTP Creation Date"
 msgstr "تاریخ ایجاد رمز یکبار مصرف"
 
-#: .\QBesharat\models.py:75
+#: .\QBesharat\models.py:74
 msgid "Password Reset OTP"
 msgstr "کد بازیابی رمز"
 
-#: .\QBesharat\models.py:76
+#: .\QBesharat\models.py:75
 msgid "Password Reset OTP Creation Date"
 msgstr "تاریخ ایجاد کد بازیابی رمز"
 
-#: .\QBesharat\models.py:79
+#: .\QBesharat\models.py:78
 msgid "Registered"
 msgstr "تایید شده"
 
-#: .\QBesharat\models.py:82
+#: .\QBesharat\models.py:81
 msgid "Profile"
 msgstr "پروفایل"
 
-#: .\QBesharat\models.py:83
+#: .\QBesharat\models.py:82
 msgid "Profiles"
 msgstr "پروفایلها"
 
-#: .\QBesharat\models.py:95
+#: .\QBesharat\models.py:94
 msgid "last login"
 msgstr "تاریخ آخرین ورود"
 
-#: .\QBesharat\models.py:100
+#: .\QBesharat\models.py:99
 msgid "date joined"
 msgstr "تاریخ عضویت"
 
-#: .\QBesharat\models.py:120
+#: .\QBesharat\models.py:119
 msgid "Image"
 msgstr "تصویر"
 
-#: .\QBesharat\models.py:166 .\QBesharat\models.py:173
+#: .\QBesharat\models.py:165 .\QBesharat\models.py:172
 msgid "Memorizer skill"
 msgstr "مهارتهای حفظ"
 
-#: .\QBesharat\models.py:167
+#: .\QBesharat\models.py:166
 msgid "Parts"
 msgstr "جزء"
 
-#: .\QBesharat\models.py:169 .\QBesharat\models.py:184
-#: .\QBesharat\models.py:211
+#: .\QBesharat\models.py:168 .\QBesharat\models.py:183
+#: .\QBesharat\models.py:210
 msgid "Awards"
 msgstr "جوایز"
 
-#: .\QBesharat\models.py:170 .\QBesharat\models.py:185
-#: .\QBesharat\models.py:212
+#: .\QBesharat\models.py:169 .\QBesharat\models.py:184
+#: .\QBesharat\models.py:211
 msgid "Certificates"
 msgstr "گواهینامه ها"
 
-#: .\QBesharat\models.py:174
+#: .\QBesharat\models.py:173
 msgid "Memorizers skill"
 msgstr "مهارتهای حفظ"
 
-#: .\QBesharat\models.py:178 .\QBesharat\models.py:188
-#: .\QBesharat\models.py:189
+#: .\QBesharat\models.py:177 .\QBesharat\models.py:187
+#: .\QBesharat\models.py:188
 msgid "Qari skill"
 msgstr "مهارتهای قرائت"
 
-#: .\QBesharat\models.py:179
+#: .\QBesharat\models.py:178
 msgid "Fluent Reading"
 msgstr "روانخوانی"
 
-#: .\QBesharat\models.py:180
+#: .\QBesharat\models.py:179
 msgid "Tahdir"
 msgstr "تحدیر"
 
-#: .\QBesharat\models.py:181
+#: .\QBesharat\models.py:180
 msgid "Tartil"
 msgstr "ترتیل"
 
-#: .\QBesharat\models.py:182
+#: .\QBesharat\models.py:181
 msgid "Research"
 msgstr "تحقیق"
 
-#: .\QBesharat\models.py:183 .\QBesharat\models.py:210
+#: .\QBesharat\models.py:182 .\QBesharat\models.py:209
 msgid "Courses"
 msgstr "دوره های گذرانده"
 
-#: .\QBesharat\models.py:193 .\QBesharat\models.py:198
-#: .\QBesharat\models.py:199
+#: .\QBesharat\models.py:192 .\QBesharat\models.py:197
+#: .\QBesharat\models.py:198
 msgid "Concepts skill"
 msgstr "مهارتهای مفاهیم"
 
-#: .\QBesharat\models.py:194
+#: .\QBesharat\models.py:193
 msgid "Interpretation"
 msgstr "تفسیر"
 
-#: .\QBesharat\models.py:195
+#: .\QBesharat\models.py:194
 msgid "Translation"
 msgstr "ترجمه"
 
-#: .\QBesharat\models.py:203 .\QBesharat\models.py:215
+#: .\QBesharat\models.py:202 .\QBesharat\models.py:214
 msgid "Tutor skill"
 msgstr "مهارتهای تدریس"
 
-#: .\QBesharat\models.py:204
+#: .\QBesharat\models.py:203
 msgid "Grade"
 msgstr "رتبه مدرس"
 
-#: .\QBesharat\models.py:206
+#: .\QBesharat\models.py:205
 msgid "Course duration"
 msgstr "مدت دوره آموزشی"
 
-#: .\QBesharat\models.py:209
+#: .\QBesharat\models.py:208
 msgid "Course Content"
 msgstr "محتوای دوره آموزشی"
 
-#: .\QBesharat\models.py:216
+#: .\QBesharat\models.py:215
 msgid "Tutors skill"
 msgstr "مهارتهای تدریس"
 
@@ -348,68 +357,75 @@ msgstr ""
 "نمی تواند کلمه عبور شما را مشاهده کند.  کلمه عبور خود را می توانید از طریق "
 "<a href=\"{}\">این لینک</a> تغییر دهید."
 
-#: .\templates\404.html:20
+#: .\static\404.html:20 .\templates\404.html:17
 msgid "Oh eyeballs! Not found!."
 msgstr "با عرض پوزش پیداش نکردم...ببخشید!"
 
-#: .\templates\404.html:23
+#: .\static\404.html:23 .\templates\404.html:20
 msgid "Tel"
 msgstr "شماره تماس"
 
-#: .\templates\404.html:35
+#: .\static\404.html:35 .\templates\404.html:32
 msgid "Email"
 msgstr "پست الکترونیک"
 
-#: .\templates\404.html:38
+#: .\static\404.html:38 .\templates\404.html:35
 msgid "Go back"
 msgstr "بازگشت"
 
-#: .\templates\admin\base_site.html:35
+#: .\static\admin\base_site.html:30 .\templates\admin\base_site.html:30
 #, fuzzy
 #| msgid "QBesharatSolution Administration Site"
 msgid "QBesharat administration"
 msgstr "مدیریت سامانه کیوبشارت"
 
-#: .\templates\admin\base_site.html:37
+#: .\static\admin\base_site.html:32 .\templates\admin\base_site.html:32
 msgid "Version"
 msgstr "ویرایش"
 
-#: .\templates\admin\base_site.html:196
+#: .\static\admin\base_site.html:210 .\templates\admin\base_site.html:210
 msgid "Documentation"
 msgstr "مستندات"
 
-#: .\templates\admin\base_site.html:200
+#: .\static\admin\base_site.html:214 .\templates\admin\base_site.html:214
 msgid "Change password"
 msgstr "تغییر کلمه عبور"
 
-#: .\templates\admin\base_site.html:202
+#: .\static\admin\base_site.html:216 .\templates\admin\base_site.html:216
 msgid "Log out"
 msgstr "خروج"
 
-#: .\templates\admin\base_site.html:207 .\templates\admin\base_site.html:213
+#: .\static\admin\base_site.html:221 .\static\admin\base_site.html:227
+#: .\templates\admin\base_site.html:221 .\templates\admin\base_site.html:227
 msgid "Welcome,"
 msgstr "خوش آمدید،"
 
+#: .\static\admin\edit_inline\tabular.html:20
 #: .\templates\admin\edit_inline\tabular.html:20
 msgid "Delete?"
 msgstr "حذف؟"
 
+#: .\static\admin\edit_inline\tabular.html:36
 #: .\templates\admin\edit_inline\tabular.html:36
 msgid "View on site"
 msgstr "مشاهده در سایت"
 
-#: .\templates\admin\index.html:14 .\templates\index.html:14
+#: .\static\index.html:14 .\templates\admin\index.html:21
+#: .\templates\index.html:14
 msgid "Support"
 msgstr "پشتیبانی آنلاین"
 
-#: .\templates\admin\index.html:17 .\templates\index.html:17
+#: .\static\index.html:17 .\templates\admin\index.html:24
+#: .\templates\index.html:17
 msgid "Online Support"
 msgstr "پشتیبانی آنلاین"
 
-#: .\templates\admin\index.html:19 .\templates\index.html:19
+#: .\static\index.html:19 .\templates\admin\index.html:26
+#: .\templates\index.html:19
 msgid "Stop"
 msgstr "توقف پشتیبانی"
 
-#: .\templates\admin\index.html:21 .\templates\index.html:21
+#: .\static\index.html:21 .\templates\admin\index.html:28
+#: .\templates\index.html:21
 msgid "Start"
 msgstr "ارائه پشتیبانی"
