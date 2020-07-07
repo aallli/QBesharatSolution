@@ -1,13 +1,13 @@
-from django.contrib.admin import forms
-
 from QBesharat.forms import *
 from django.contrib import admin
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.admin import UserAdmin
 from django_summernote.models import Attachment
-from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor
 from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor
+from QBesharatSolution.utlis import register_operator, unregister_operator
 
 
 def custom_titled_filter(title):
@@ -99,6 +99,21 @@ class UserAdmin(ModelAdminJalaliMixin, UserAdmin, BaseModelAdmin):
     readonly_fields = ['image_tag', 'last_login_jalali', 'date_joined_jalali']
     inlines = [MemorizerInline, QariInline, ConceptsInline, TutorInline]
     change_form_template = 'admin/custom/change_form.html'
+
+    def save_form(self, request, form, change):
+        try:
+            user = form.instance
+            if 'groups' in form.changed_data:
+                if form.cleaned_data['groups'].filter(
+                        name=settings.CHAT_SUPPORT_GROUP).count() == 1 and \
+                                user.groups.filter(name=settings.CHAT_SUPPORT_GROUP).count() == 0:
+                    register_operator(request, user)
+
+                elif user.groups.filter(name=settings.CHAT_SUPPORT_GROUP).count() == 1:
+                    unregister_operator(request, user)
+            return super(UserAdmin, self).save_form(request, form, change)
+        except Exception as e:
+            self.message_user(request, e, level=messages.ERROR)
 
 
 admin.site.unregister(Attachment)

@@ -1,10 +1,4 @@
-from jalali_date import datetime2jalali
 from django.utils.translation import ugettext_lazy as _
-
-
-def to_jalali_full(date):
-    return datetime2jalali(date).strftime('%H:%M:%S %Y/%m/%d')
-
 
 msgid = _("welcome")
 msgid = _("Admin Interface")

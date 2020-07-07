@@ -20,7 +20,7 @@
 }
 
 body {
-    background: url('../img/tile.png');
+    background: url('../img/tile.png') !important;
 }
 
 #branding {
@@ -44,3 +44,16 @@ body {
     font-size: 12px;
 }
 
+.stoplink, .inlinestoplink {
+    padding-left: 16px;
+    background: url('/static/admin/img/icon-no.svg') 0 1px no-repeat;
+}
+
+#branding {
+    width: 100%;
+}
+
+.admin-interface.login #header #branding h1 img.logo+span {
+    margin-bottom: 5px;
+    left: -40px;
+}

@@ -2,7 +2,7 @@
 
 1- apt-get update && apt-get -y upgrade
 2- apt-get install python3 && apt-get install python3-pip && apt-get install libpq-dev
-3- pip install virtualenv
+3- pip3 install virtualenv
 4- Create virtual environment: virtualenv venv
 5- Clone source: git clone https://github.com/aallli/QBesharatSolution.git
 6- Activate virtualenv: source venv/bin/activate
@@ -194,3 +194,10 @@ Configure Nginx:
 
     /usr/sbin/nginx -s stop
     /usr/sbin/nginx
+
+41- Get more admin themes:
+    
+    python manage.py loaddata admin_interface_theme_django.json
+    python manage.py loaddata admin_interface_theme_bootstrap.json
+    python manage.py loaddata admin_interface_theme_foundation.json
+    python manage.py loaddata admin_interface_theme_uswds.json

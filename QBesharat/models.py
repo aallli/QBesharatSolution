@@ -1,17 +1,13 @@
-import os
-import base64
-import locale
+import os, base64, locale
 from django.db import models
-from django.utils import timezone
 from django.dispatch import receiver
 from QBesharatSolution import settings
 from django.utils.html import mark_safe
-from QBesharat.utils import to_jalali_full
+from QBesharatSolution.utlis import to_jalali_full
 from django.contrib.auth.models import AbstractUser
 from django_resized import ResizedImageField
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
-from QBesharatSolution.utlis import get_admin_url
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 locale.setlocale(locale.LC_ALL, '')

@@ -40,6 +40,10 @@
     float: left;
 }
 
+:lang(fa) .stoplink, .inlinestoplink {
+    padding-left: 16px !important;
+}
+
 .bias {
     width: 20px;
     height: 20px;

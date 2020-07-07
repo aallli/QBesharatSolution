@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from django.utils.translation import ugettext_lazy as _
 
-VERSION = '0.7.0'
+VERSION = '0.10.0'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,9 +32,10 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", default="localhost").split(" ")
 # Application definition
 
 INSTALLED_APPS = [
-    # django apps
+    # third party apps
     'admin_interface',
-    'colorfield',
+
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party apps
-	'jalali_date',
+    'colorfield',
+    'jalali_date',
     'django_resized',
     'django_summernote',
 
@@ -75,9 +77,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "QBesharatSolution.context_processors.version",
-                "QBesharatSolution.context_processors.admin_tel",
-                "QBesharatSolution.context_processors.admin_email",
             ],
         },
     },
@@ -121,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-LANGUAGE_CODE = 'fa-ir'
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'Asia/Tehran'
 
@@ -171,6 +170,7 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
 # Summernote richtext box
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 SUMMERNOTE_CONFIG = {
     'summernote': {
         # Change editor size
@@ -193,7 +193,7 @@ SUMMERNOTE_CONFIG = {
 
 # django jalali datae defaults
 JALALI_DATE_DEFAULTS = {
-   'Strftime': {
+    'Strftime': {
         'date': '%y/%m/%d',
         'datetime': '%H:%M:%S _ %y/%m/%d',
     },
@@ -221,3 +221,7 @@ ADMIN_TEL = os.environ.get('ADMIN_TEL', default='+98 21 2915 5120')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', default='qbesharat@irib.ir')
 
 LIST_PER_PAGE = int(os.environ.get('LIST_PER_PAGE', default=50))
+
+CHAT_SERVER_URL = 'http://localhost:8888/'
+CHAT_SUPPORT_GROUP = 'Online Support'
+CHAT_SUPPORT_REFRESH_INTERVAL = 300

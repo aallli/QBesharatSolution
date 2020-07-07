@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from QBesharat import views
 from django.conf import settings
 from django.contrib import admin
 from django.shortcuts import redirect
@@ -20,8 +21,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
-
-from QBesharat import views
+from QBesharatSolution.views import start_support, stop_support
 
 admin.site.site_header = _('QBesharat Administration Site')
 admin.site.site_title = _('Welcome to QBesharat administration control panel')
@@ -31,9 +31,10 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-
+    path('admin/start_support/', start_support, name='start_support'),
+    path('admin/stop_support/', stop_support, name='stop_support'),
+    path('admin/', admin.site.urls),
     path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),
 )
 
