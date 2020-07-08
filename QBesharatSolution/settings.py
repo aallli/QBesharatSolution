@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from django.utils.translation import ugettext_lazy as _
 
-VERSION = '0.10.1'
+VERSION = '0.10.4'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -222,6 +222,7 @@ ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', default='qbesharat@irib.ir')
 
 LIST_PER_PAGE = int(os.environ.get('LIST_PER_PAGE', default=50))
 
-CHAT_SERVER_URL = 'http://localhost:8888/'
-CHAT_SUPPORT_GROUP = 'Online Support'
-CHAT_SUPPORT_REFRESH_INTERVAL = 300
+# Chat server configurations
+CHAT_SERVER_URL = os.environ.get("CHAT_SERVER_URL", default='http://localhost:8888/')
+CHAT_SUPPORT_GROUP = os.environ.get("CHAT_SUPPORT_GROUP", default='Online Support')
+CHAT_SUPPORT_REFRESH_INTERVAL = os.environ.get("CHAT_SUPPORT_REFRESH_INTERVAL", default=300)

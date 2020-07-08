@@ -33,13 +33,22 @@
     Add to /etc/postgresql/9.5/main/pg_hba.conf : host all all 0.0.0.0/0 trust
     systemctl restart postgresql
 
+NOTE: Set environment variable for database access: 
+
+    export DATABASES_PASSWORD='[Database password]'
+
 13- python manage.py migrate
+
+NOTE: Set environment variable for database access: 
+
+    export ALLOWED_HOSTS='[Server IP]'
+    
 14- test if gunicorn can serve application: gunicorn --bind 0.0.0.0:8000 QBesharatSolution.wsgi
 15- groupadd --system www-data
-16- useradd --system --gid www-data --shell /bin/bash --home-dir /home/admin1/qbesharat/QBesharatSolution qbesharat
+16- useradd --system --gid www-data --shell /bin/bash --home-dir /home/[user]/qbesharat/QBesharatSolution qbesharat
 17- usermod -aG sudo qbesharat
-18- chown -R qbesharat:www-data /home/admin1/qbesharat/QBesharatSolution
-19- chmod -R g+w /home/admin1/qbesharat/QBesharatSolution
+18- chown -R qbesharat:www-data /home/[user]/qbesharat/QBesharatSolution
+19- chmod -R g+w /home/[user]/qbesharat/QBesharatSolution
 
 Configure Gunicorn:
 20- nano /etc/systemd/system/gunicorn-qbesharat.service
@@ -52,9 +61,9 @@ Configure Gunicorn:
     [Service]
     User=qbesharat
     Group=www-data
-    WorkingDirectory=/home/admin1/qbesharat/QBesharatSolution
+    WorkingDirectory=/home/[user]/qbesharat/QBesharatSolution
     EnvironmentFile=/etc/gunicorn-qbesharat.env
-    ExecStart=/home/admin1/qbesharat/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/admin1/qbesharat/QBesharatSolution/QBesharatSolution.sock QBesharatSolution.wsgi:application
+    ExecStart=/home/[user]/qbesharat/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/[user]/qbesharat/QBesharatSolution/QBesharatSolution.sock QBesharatSolution.wsgi:application
     
     [Install]
     WantedBy=multi-user.target
@@ -69,10 +78,13 @@ Configure Gunicorn:
     ADMIN_TEL='[admin tel]'
     ADMIN_EMAIL='[admin email]'
     LIST_PER_PAGE=[list per page in admin pages]
+    CHAT_SERVER_URL='[Chat server url]'
+    CHAT_SUPPORT_GROUP='[The name of chat support group]'
+    CHAT_SUPPORT_REFRESH_INTERVAL=[interval in seconds]
     
 24- systemctl start gunicorn-qbesharat
 25- systemctl enable gunicorn-qbesharat
-26- Check if 'QBesharatSolution.sock' file exists: ls /home/admin1/qbesharat/QBesharatSolution
+26- Check if 'QBesharatSolution.sock' file exists: ls /home/[user]/qbesharat/QBesharatSolution
 27- Create /etc/nginx/conf.d/proxy_params
 28- Add followings:
 
@@ -96,7 +108,7 @@ Configure Gunicorn:
 31- Compile messages for i18N:
     
     source env/bin/activate
-    django-admin compilemessages (if translation is needed)
+    django-admin compilemessages -f (if translation is needed)
 
 32- Collect static files: (Create static and uploads directory if needed)
  
@@ -134,19 +146,19 @@ Configure Nginx:
     
         error_page 404 /404.html;
         location /404.html {
-            root /home/admin1/qbesharat/QBesharatSolution/static/errors;
+            root /home/[user]/qbesharat/QBesharatSolution/static/errors;
             internal;
         }
     
         location /static/ {
             if ($request_method = 'GET') {
                 add_header 'Access-Control-Allow-Origin' 'http://qbesharat.irib.ir:8000';
-                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS';
                 add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
                 add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
             }
     
-            root /home/admin1/qbesharat/QBesharatSolution;
+            root /home/[user]/qbesharat/QBesharatSolution;
         }
     
         location   / {
@@ -162,27 +174,27 @@ Configure Nginx:
     
         error_page 502 /502.html;
         location /502.html {
-            root /home/admin1/qbesharat/QBesharatSolution/static/errors;
+            root /home/[user]/qbesharat/QBesharatSolution/static/errors;
             internal;
         }
     
         error_page 503 504 507 508 /50x.html;
         location /50x.html {
-            root /home/admin1/qbesharat/QBesharatSolution/static/errors;
+            root /home/[user]/qbesharat/QBesharatSolution/static/errors;
             internal;
         }
     
         location /static/ {
-            root /home/admin1/qbesharat/QBesharatSolution;
+            root /home/[user]/qbesharat/QBesharatSolution;
         }
     
         location /media/ {
-            root /home/admin1/qbesharat/QBesharatSolution;
+            root /home/[user]/qbesharat/QBesharatSolution;
         }
     
         location / {
             include proxy_params;
-            proxy_pass http://unix:/home/admin1/qbesharat/QBesharatSolution/QBesharatSolution.sock;
+            proxy_pass http://unix:/home/[user]/qbesharat/QBesharatSolution/QBesharatSolution.sock;
         }
     }
 
