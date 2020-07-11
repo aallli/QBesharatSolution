@@ -27,7 +27,7 @@ def chat_server_url():
 
 @register.simple_tag()
 def online_support(request):
-    return utlis.online_support(request)
+    return utlis.online_support()
 
 
 @register.simple_tag()

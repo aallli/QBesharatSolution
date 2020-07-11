@@ -47,25 +47,25 @@ key = 'online_support_status'
 _online_support = None
 
 
-def online_support(request):
+def online_support():
     global _online_support
-    if not _online_support:
-        update_online_support(request)
-
     return _online_support
 
 
-def update_online_support(request):
+def update_online_support():
     global _online_support
     try:
         url = '%sapi/operator/status/' % settings.CHAT_SERVER_URL
         response = requests.get(url)
         _online_support = json.loads(response.content)
     except:
-        _online_support = False
+        _online_support = None
     finally:
-        r = Timer(settings.CHAT_SUPPORT_REFRESH_INTERVAL, update_online_support, args=(request,))
+        r = Timer(settings.CHAT_SUPPORT_REFRESH_INTERVAL, update_online_support)
         r.start()
+
+
+update_online_support()
 
 
 def update_operator(request, status):
@@ -75,7 +75,7 @@ def update_operator(request, status):
         response = requests.patch(url, data=data)
         if response.status_code == 200:
             request.session['operator'] = json.loads(response.content)
-            update_online_support(request)
+            update_online_support()
     except:
         raise Exception(_('Error in updating online support operator'))
 
@@ -100,7 +100,7 @@ def register_operator(request, user):
         response = requests.post(url, data=data)
         if response.status_code in [200, 201]:
             request.session['operator'] = json.loads(response.content)
-            update_online_support(request)
+            update_online_support()
         else:
             raise Exception(response.content.decode(), True)
     except Exception as e:
@@ -117,7 +117,7 @@ def unregister_operator(request, user):
         response = requests.delete(url, data=data)
         if response.status_code in [200, 201]:
             if 'operator' in request.session: del request.session['operator']
-            update_online_support(request)
+            update_online_support()
         else:
             raise Exception(response.content.decode(), True)
     except Exception as e:

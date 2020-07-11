@@ -86,7 +86,7 @@
         }
 
     </style>
-    {% if online_support.status %}
+    {% if online_support and online_support.status %}
         {% if is_online_support_operator %}
             <div id="chat-application" class="operator">
                 <iframe id="chat-iframe" class="support"
