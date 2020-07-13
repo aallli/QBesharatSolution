@@ -56,7 +56,7 @@ def update_online_support():
     global _online_support
     try:
         url = '%sapi/operator/status/' % settings.CHAT_SERVER_URL
-        response = requests.get(url)
+        response = requests.get(url, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         _online_support = json.loads(response.content)
     except:
         _online_support = None
@@ -72,7 +72,7 @@ def update_operator(request, status):
     data = {'name': request.user.pk, 'status': status}
     url = '%sapi/operator/' % settings.CHAT_SERVER_URL
     try:
-        response = requests.patch(url, data=data)
+        response = requests.patch(url, data=data, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         if response.status_code == 200:
             request.session['operator'] = json.loads(response.content)
             update_online_support()
@@ -81,10 +81,9 @@ def update_operator(request, status):
 
 
 def get_operator(request, create=False):
-    data = {'name': request.user.pk}
-    url = '%sapi/operator/' % settings.CHAT_SERVER_URL
+    url = '%sapi/operator/%s/' % (settings.CHAT_SERVER_URL, request.user.pk)
     try:
-        response = requests.get(url, data=data)
+        response = requests.get(url, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         if response.status_code == 200:
             request.session['operator'] = json.loads(response.content)
         elif create:
@@ -97,7 +96,7 @@ def register_operator(request, user):
     url = '%sapi/operator/' % settings.CHAT_SERVER_URL
     data = {'name': user.pk, }
     try:
-        response = requests.post(url, data=data)
+        response = requests.post(url, data=data, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         if response.status_code in [200, 201]:
             request.session['operator'] = json.loads(response.content)
             update_online_support()
@@ -114,7 +113,7 @@ def unregister_operator(request, user):
     url = '%sapi/operator/0/' % settings.CHAT_SERVER_URL
     data = {'name': user.pk, }
     try:
-        response = requests.delete(url, data=data)
+        response = requests.delete(url, data=data, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         if response.status_code in [200, 201]:
             if 'operator' in request.session: del request.session['operator']
             update_online_support()

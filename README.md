@@ -2,32 +2,37 @@
 
 1- apt-get update && apt-get -y upgrade
 2- apt-get install python3 && apt-get install python3-pip && apt-get install libpq-dev
-3- pip3 install virtualenv
-4- Create virtual environment: virtualenv venv
-5- Clone source: git clone https://github.com/aallli/QBesharatSolution.git
-6- Activate virtualenv: source venv/bin/activate
-7- pip install -r requirements.txt
-8- Install postgresql:
+3- Install nginx:
 
-    apt-get install postgresql postgresql-contrib
-    usermod -aG sudo postgres
+    sudo apt-get update
+    sudo apt-get install nginx
 
-9- Switch over to the postgres account on your server by typing:
+4- pip3 install virtualenv
+5- Create virtual environment: virtualenv venv
+6- Clone source: git clone https://github.com/aallli/QBesharatSolution.git
+7- Activate virtualenv: source venv/bin/activate
+8- pip install -r requirements.txt
+9- Install postgresql:
+
+    sudo apt-get install postgresql postgresql-contrib
+    sudo usermod -aG sudo postgres
+
+10- Switch over to the postgres account on your server by typing:
     
     sudo -i -u postgres
 
-10- Create database named sadesa: sudo -u postgres createdb
+11- Create database named sadesa: sudo -u postgres createdb
 
     sudo -u postgres createdb qbesharat
 
-11- Set postgres password: 
+12- Set postgres password: 
     
     sudo -u postgres psql postgres
     \password postgres
     \q
     exit 
 
-12- Caution: Allow remote access to postgres:
+13- Caution: Allow remote access to postgres:
     
     Add to /etc/postgresql/9.5/main/postgresql.conf : #listen_addresses = '*'
     Add to /etc/postgresql/9.5/main/pg_hba.conf : host all all 0.0.0.0/0 trust
@@ -37,22 +42,23 @@ NOTE: Set environment variable for database access:
 
     export DATABASES_PASSWORD='[Database password]'
 
-13- python manage.py migrate
+14- python manage.py migrate
 
 NOTE: Set environment variable for database access: 
 
     export ALLOWED_HOSTS='[Server IP]'
     
-14- test if gunicorn can serve application: gunicorn --bind 0.0.0.0:8000 QBesharatSolution.wsgi
-15- groupadd --system www-data
-16- useradd --system --gid www-data --shell /bin/bash --home-dir /home/[user]/qbesharat/QBesharatSolution qbesharat
-17- usermod -aG sudo qbesharat
-18- chown -R qbesharat:www-data /home/[user]/qbesharat/QBesharatSolution
-19- chmod -R g+w /home/[user]/qbesharat/QBesharatSolution
+15- test if gunicorn can serve application: gunicorn --bind 0.0.0.0:8000 QBesharatSolution.wsgi
+16- sudo groupadd --system www-data
+17- sudo useradd --system --gid www-data --shell /bin/bash --home-dir /home/[user]/qbesharat/QBesharatSolution qbesharat
+18- sudo usermod -aG sudo qbesharat
+19- sudo chown -R qbesharat:www-data /home/[user]/qbesharat/QBesharatSolution
+20- sudo chmod -R g+w /home/[user]/qbesharat/QBesharatSolution
+21- sudo chmod 777 /home/[user]/qbesharat/QBesharatSolution/media/
 
 Configure Gunicorn:
-20- nano /etc/systemd/system/gunicorn-qbesharat.service
-21- add:
+22- sudo nano /etc/systemd/system/gunicorn-qbesharat.service
+23- add:
     
     [Unit]
     Description=gunicorn daemon
@@ -68,8 +74,8 @@ Configure Gunicorn:
     [Install]
     WantedBy=multi-user.target
         
-22- nano /etc/gunicorn-qbesharat.env
-23- Add followings:
+24- sudo nano /etc/gunicorn-qbesharat.env
+24- Add followings:
     
     DEBUG=0
     DEPLOY=1
@@ -82,11 +88,11 @@ Configure Gunicorn:
     CHAT_SUPPORT_GROUP='[The name of chat support group]'
     CHAT_SUPPORT_REFRESH_INTERVAL=[interval in seconds]
     
-24- systemctl start gunicorn-qbesharat
-25- systemctl enable gunicorn-qbesharat
-26- Check if 'QBesharatSolution.sock' file exists: ls /home/[user]/qbesharat/QBesharatSolution
-27- Create /etc/nginx/conf.d/proxy_params
-28- Add followings:
+25- sudo systemctl start gunicorn-qbesharat
+26- sudo systemctl enable gunicorn-qbesharat
+27- Check if 'QBesharatSolution.sock' file exists: ls /home/[user]/qbesharat/QBesharatSolution
+28- sudo nano /etc/nginx/conf.d/proxy_params
+29- Add followings:
 
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
@@ -95,15 +101,16 @@ Configure Gunicorn:
 
 29- If gunicorn.service file is changed, run:
 
-    systemctl daemon-reload
-    systemctl restart gunicorn-qbesharat
+    sudo systemctl daemon-reload
+    sudo systemctl restart gunicorn-qbesharat
 
 30- Install gettext:
 
-    apt-get update
-    apt-get upgrade
-    apt-get install
-    apt-get install gettext
+    deactivate
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get install
+    sudo apt-get install gettext
 
 31- Compile messages for i18N:
     
@@ -123,20 +130,16 @@ Configure Nginx:
     
     chmod 400 /root/certs/qbesharat/qbesharat.key
 
-35- Install nginx:
-
-    apt update
-    apt install nginx
 
 36- Run nginx:
 
-    systemctl daemon-reload
-    systemctl start nginx
-    systemctl enable nginx
+    sudo systemctl daemon-reload
+    sudo systemctl start nginx.service
+    sudo systemctl enable nginx.service
     
 37- Configure nginx:
 
-    nano /etc/nginx/conf.d/qbesharat.conf
+    sudo nano /etc/nginx/conf.d/qbesharat.conf
 
 38- Add:
     
@@ -200,12 +203,12 @@ Configure Nginx:
 
 39- Test your Nginx configuration for syntax errors by typing: 
 
-    /usr/sbin/nginx -t
+    sudo /usr/sbin/nginx -t
 
 40- Restart nginx:
 
-    /usr/sbin/nginx -s stop
-    /usr/sbin/nginx
+    sudo systemctl restart nginx.service
+    sudo systemctl status nginx.service
 
 41- Get more admin themes:
     
