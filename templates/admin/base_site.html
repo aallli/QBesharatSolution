@@ -36,6 +36,7 @@
     {% online_support request as online_support %}
     {% is_online_support_operator request as is_online_support_operator %}
     {% chat_server_url as chat_server_url %}
+    {% chat_server_token as chat_server_token %}
     <style>
         #chat-application {
             background: transparent;
@@ -90,7 +91,8 @@
         {% if is_online_support_operator %}
             <div id="chat-application" class="operator">
                 <iframe id="chat-iframe" class="support"
-                        src="{{ chat_server_url }}{{ LANGUAGE_CODE }}/chat/start/operator/?u={{ user.pk }}">
+                        src="
+                                {{ chat_server_url }}{{ LANGUAGE_CODE }}/chat/start/operator/{{ user.pk }}/?token={{ chat_server_token }}">
                 </iframe>
             </div>
         {% else %}

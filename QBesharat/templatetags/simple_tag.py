@@ -26,6 +26,11 @@ def chat_server_url():
 
 
 @register.simple_tag()
+def chat_server_token():
+    return settings.CHAT_SERVER_TOKEN
+
+
+@register.simple_tag()
 def online_support(request):
     return utlis.online_support()
 

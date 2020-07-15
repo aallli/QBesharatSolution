@@ -68,9 +68,9 @@ def update_online_support():
 update_online_support()
 
 
-def update_operator(request, status):
-    data = {'name': request.user.pk, 'status': status}
-    url = '%sapi/operator/' % settings.CHAT_SERVER_URL
+def update_operator(request, user=None, status='off'):
+    data = {'status': status}
+    url = '%sapi/operator/%s/' % (settings.CHAT_SERVER_URL, request.user.pk)
     try:
         response = requests.patch(url, data=data, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         if response.status_code == 200:
@@ -110,10 +110,9 @@ def register_operator(request, user):
 
 
 def unregister_operator(request, user):
-    url = '%sapi/operator/0/' % settings.CHAT_SERVER_URL
-    data = {'name': user.pk, }
+    url = '%sapi/operator/%s/' % (settings.CHAT_SERVER_URL, user.pk)
     try:
-        response = requests.delete(url, data=data, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
+        response = requests.delete(url, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
         if response.status_code in [200, 201]:
             if 'operator' in request.session: del request.session['operator']
             update_online_support()
