@@ -43,23 +43,17 @@ def get_admin_url(self):
     return reverse('admin:%s_%s_change' % info, args=(self.pk,))
 
 
-key = 'online_support_status'
-_online_support = None
-
-
 def online_support():
-    global _online_support
-    return _online_support
+    return settings.ONLINE_SUPPORT
 
 
 def update_online_support():
-    global _online_support
     try:
         url = '%sapi/operator/status/' % settings.CHAT_SERVER_URL
         response = requests.get(url, headers={'Authorization': 'Token %s' % settings.CHAT_SERVER_TOKEN})
-        _online_support = json.loads(response.content)
+        settings.ONLINE_SUPPORT = json.loads(response.content)
     except:
-        _online_support = None
+        settings.ONLINE_SUPPORT = None
     finally:
         r = Timer(settings.CHAT_SUPPORT_REFRESH_INTERVAL, update_online_support)
         r.start()
