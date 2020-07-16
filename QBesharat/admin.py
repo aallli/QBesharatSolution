@@ -2,12 +2,12 @@ from QBesharat.forms import *
 from django.contrib import admin
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.admin import UserAdmin
 from django_summernote.models import Attachment
+from django.contrib.auth.admin import UserAdmin
 from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
-from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor
 from QBesharatSolution.utlis import register_operator, unregister_operator
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor
 
 
 def custom_titled_filter(title):

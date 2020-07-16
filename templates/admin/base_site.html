@@ -91,8 +91,7 @@
         {% if is_online_support_operator %}
             <div id="chat-application" class="operator">
                 <iframe id="chat-iframe" class="support"
-                        src="
-                                {{ chat_server_url }}{{ LANGUAGE_CODE }}/chat/start/operator/{{ user.pk }}/?token={{ chat_server_token }}">
+                        src="{{ chat_server_url }}{{ LANGUAGE_CODE }}/chat/start/operator/{{ user.pk }}/?token={{ chat_server_token }}">
                 </iframe>
             </div>
         {% else %}
@@ -115,7 +114,8 @@
                         return;
                     }
 
-                    var querystring = 'user={0}&ip={1}&user_agent={2}&referer={3}'.format('{{ user.username }}', ip, navigator.userAgent, document.location.origin);
+                    var querystring = 'user={0}&ip={1}&user_agent={2}&referer={3}&token={4}'.format(
+                            '{{ user.username }}', ip, navigator.userAgent, document.location.origin, '{{ chat_server_token }}');
                     document.getElementById('chat-iframe').setAttribute('src',
                             "{0}{1}/chat/?{2}".format('{{ chat_server_url }}', '{{ LANGUAGE_CODE }}', querystring));
                 }
