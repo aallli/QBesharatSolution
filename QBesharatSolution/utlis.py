@@ -1,6 +1,5 @@
 import json
 import requests
-from threading import Timer
 from QBesharatSolution import settings
 from jalali_date import datetime2jalali
 from django.utils.translation import ugettext_lazy as _
@@ -54,12 +53,6 @@ def update_online_support():
         settings.ONLINE_SUPPORT = json.loads(response.content)
     except:
         settings.ONLINE_SUPPORT = None
-    finally:
-        r = Timer(settings.CHAT_SUPPORT_REFRESH_INTERVAL, update_online_support)
-        r.start()
-
-
-update_online_support()
 
 
 def update_operator(request, user=None, status='off'):
@@ -71,7 +64,7 @@ def update_operator(request, user=None, status='off'):
             request.session['operator'] = json.loads(response.content)
             update_online_support()
     except:
-        raise Exception(_('Error in updating online support operator'))
+        settings.ONLINE_SUPPORT = None
 
 
 def get_operator(request, create=False):
@@ -83,7 +76,7 @@ def get_operator(request, create=False):
         elif create:
             register_operator(request, request.user)
     except Exception as e:
-        raise Exception(_('Error in getting online support operator'))
+        settings.ONLINE_SUPPORT = None
 
 
 def register_operator(request, user):
