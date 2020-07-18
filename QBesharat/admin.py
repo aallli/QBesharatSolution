@@ -7,7 +7,7 @@ from django.contrib.auth.admin import UserAdmin
 from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
 from QBesharatSolution.utlis import register_operator, unregister_operator
-from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic
 
 
 def custom_titled_filter(title):
@@ -56,6 +56,16 @@ class TutorInline(admin.StackedInline):
 
 class CityInline(admin.TabularInline):
     model = City
+
+
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+    fields = ['name', 'active']
+    list_display = ['name', 'active']
+    list_display_links = ['name', 'active']
+    model = Topic
+    list_filter = ['active']
+    search_fields = ['name', ]
 
 
 @admin.register(Country)

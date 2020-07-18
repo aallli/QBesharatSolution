@@ -75,7 +75,7 @@ def get_operator(request, create=False):
             request.session['operator'] = json.loads(response.content)
         elif create:
             register_operator(request, request.user)
-    except Exception as e:
+    except:
         settings.ONLINE_SUPPORT = None
 
 

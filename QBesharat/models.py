@@ -22,6 +22,22 @@ class Sex(models.TextChoices):
     PROFILE_SEX_FEMALE = 'female', _('Female')
 
 
+class Topic(models.Model):
+    name = models.CharField(verbose_name=_('Topic'), max_length=2000, unique=True, null=False)
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+
+    class Meta:
+        verbose_name = _("Topic")
+        verbose_name_plural = _("Topics")
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
+
+
 class Country(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=200, unique=True, null=False)
     active = models.BooleanField(verbose_name=_('Active'), default=True)
