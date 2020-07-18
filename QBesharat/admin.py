@@ -8,7 +8,8 @@ from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 from QBesharatSolution.utlis import register_operator, unregister_operator
-from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject, Network, Program
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject, Network, Program, \
+    Episod
 
 
 def custom_titled_filter(title):
@@ -77,7 +78,7 @@ class SubjectAdmin(ModelAdminJalaliMixin, SummernoteModelAdmin, BaseModelAdmin):
     list_display = ['topic', 'description', 'date_jalali', 'active']
     list_display_links = ['topic', 'description', 'date_jalali', 'active']
     model = Subject
-    list_filter = ['active', 'topic', 'date']
+    list_filter = ['active', ('topic', custom_titled_filter(_('Topic'))), 'date']
     search_fields = ['description', 'topic']
     readonly_fields = ['date_jalali', ]
 
@@ -151,14 +152,25 @@ class NetworkAdmin(admin.ModelAdmin):
 
 
 @admin.register(Program)
-class ProgramAdmin(admin.ModelAdmin):
+class ProgramAdmin(BaseModelAdmin):
     fields = ['name', 'network', ('poster', 'poster_tag'), 'count', 'active']
     list_display = ['name', 'network', 'active']
     list_display_links = ['name', 'network', 'active']
     model = Program
     list_filter = ['active', 'network']
     search_fields = ['name', 'network']
-    readonly_fields = ['poster_tag',]
+    readonly_fields = ['poster_tag', ]
+
+
+@admin.register(Episod)
+class EpisodAdmin(ModelAdminJalaliMixin, BaseModelAdmin):
+    fields = ['program', 'publish_date', 'duration', 'active']
+    list_display = ['program', 'publish_date_jalali', 'duration', 'active']
+    list_display_links = ['program', 'publish_date_jalali', 'duration', 'active']
+    model = Episod
+    list_filter = ['active', ('program__name', custom_titled_filter(_('Program'))), 'publish_date']
+    search_fields = ['program', 'network']
+    readonly_fields = ['publish_date_jalali', ]
 
 
 admin.site.unregister(Attachment)

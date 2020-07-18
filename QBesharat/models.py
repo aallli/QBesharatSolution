@@ -32,17 +32,17 @@ class Topic(models.Model):
         ordering = ['description']
 
     def __str__(self):
-        return self.description
+        return '%s...' % self.description[:25]
 
     def __unicode__(self):
-        return self.description
+        return '%s...' % self.description[:25]
 
 
 class Subject(models.Model):
-    topic = models.ForeignKey(Topic, verbose_name=_('Topic'), on_delete=models.SET_NULL, null=True)
+    topic = models.ForeignKey(Topic, verbose_name=_('Topic'), on_delete=models.CASCADE)
     description = models.TextField(verbose_name=_('Description'), max_length=2000, null=False)
     verse = models.TextField(verbose_name=_('Verse'), max_length=2000, unique=True, null=False)
-    date = models.DateField(verbose_name=_('Date'), null=True, blank=True, default='1399-04-01')
+    date = models.DateField(verbose_name=_('Date'), null=True, blank=False, default='1399-04-01')
     active = models.BooleanField(verbose_name=_('Active'), default=True)
 
     class Meta:
@@ -274,7 +274,7 @@ class Network(models.Model):
 
 class Program(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=1000, unique=True, null=False)
-    network = models.ForeignKey(Network, verbose_name=_('Network'), on_delete=models.SET_NULL, null=True)
+    network = models.ForeignKey(Network, verbose_name=_('Network'), on_delete=models.CASCADE)
     poster = ResizedImageField(size=[settings.MAX_MEDIUM_IMAGE_WIDTH, settings.MAX_MEDIUM_IMAGE_HEIGHT],
                               verbose_name=_('Poster'), upload_to=settings.MEDIA_URL[1:len(settings.MEDIA_URL)],
                               blank=True, null=True)
@@ -284,13 +284,13 @@ class Program(models.Model):
     class Meta:
         verbose_name = _("Program")
         verbose_name_plural = _("Programs")
-        ordering = ['name']
+        ordering = ['network', 'name']
 
     def __str__(self):
-        return self.name
+        return '%s: %s' % (self.network, self.name)
 
     def __unicode__(self):
-        return self.name
+        return '%s: %s' % (self.network, self.name)
 
     def production_date_jalali(self):
         return to_jalali_full(self.production_date, True)
@@ -356,3 +356,26 @@ def auto_delete_program_image_on_change(sender, instance, **kwargs):
     except Exception as e:
         print('Delete error: %s' % e.args[0])
         return False
+
+
+class Episod(models.Model):
+    program = models.ForeignKey(Program, verbose_name=_('Program'), on_delete=models.CASCADE)
+    publish_date = models.DateField(verbose_name=_('Publish Date'), null=True, blank=True, default='1399-04-01')
+    duration = models.IntegerField(verbose_name=_('Duration (min)'), default=30, blank=False) # in minutes
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+
+    class Meta:
+        verbose_name = _("Episod")
+        verbose_name_plural = _("Episods")
+        ordering = ['publish_date']
+
+    def __str__(self):
+        return '%s (%s)' % (self.program, self.publish_date_jalali())
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.program, self.publish_date_jalali())
+
+    def publish_date_jalali(self):
+        return to_jalali_full(self.publish_date, True)
+
+    publish_date_jalali.short_description = _('Publish Date')

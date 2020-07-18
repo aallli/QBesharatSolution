@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 12:33+0430\n"
+"POT-Creation-Date: 2020-07-18 13:07+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,6 +124,7 @@ msgstr "شرج"
 
 #: .\QBesharat\models.py:27 .\QBesharat\models.py:46 .\QBesharat\models.py:68
 #: .\QBesharat\models.py:85 .\QBesharat\models.py:261 .\QBesharat\models.py:282
+#: .\QBesharat\models.py:365
 msgid "Active"
 msgstr "فعال"
 
@@ -340,7 +341,7 @@ msgstr "پوستر"
 msgid "Count"
 msgstr "تعداد"
 
-#: .\QBesharat\models.py:285
+#: .\QBesharat\models.py:285 .\QBesharat\models.py:362
 msgid "Program"
 msgstr "برنامه"
 
@@ -353,6 +354,24 @@ msgstr "برنامه ها"
 #| msgid "Creation Date"
 msgid "Production Date"
 msgstr "تاریخ تولید"
+
+#: .\QBesharat\models.py:363 .\QBesharat\models.py:381
+#, fuzzy
+#| msgid "Creation Date"
+msgid "Publish Date"
+msgstr "تاریخ تولد"
+
+#: .\QBesharat\models.py:364
+msgid "Duration (min)"
+msgstr "مدت (دقیقه)"
+
+#: .\QBesharat\models.py:368
+msgid "Episod"
+msgstr "قسمت برنامه"
+
+#: .\QBesharat\models.py:369
+msgid "Episods"
+msgstr "قسمتهای برنامه"
 
 #: .\QBesharat\utils.py:3
 msgid "welcome"

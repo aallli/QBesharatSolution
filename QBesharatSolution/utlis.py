@@ -11,6 +11,7 @@ def to_jalali_full(date, no_time):
     else:
         return datetime2jalali(date).strftime('%H:%M:%S %Y/%m/%d')
 
+
 def switch_lang_code(path, language):
     # Get the supported language codes
     lang_codes = [c for (c, name) in settings.LANGUAGES]
