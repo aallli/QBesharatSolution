@@ -23,19 +23,44 @@ class Sex(models.TextChoices):
 
 
 class Topic(models.Model):
-    name = models.CharField(verbose_name=_('Topic'), max_length=2000, unique=True, null=False)
+    description = models.CharField(verbose_name=_('Description'), max_length=2000, unique=True, null=False)
     active = models.BooleanField(verbose_name=_('Active'), default=True)
 
     class Meta:
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
-        ordering = ['name']
+        ordering = ['description']
 
     def __str__(self):
-        return self.name
+        return self.description
 
     def __unicode__(self):
-        return self.name
+        return self.description
+
+
+class Subject(models.Model):
+    topic = models.ForeignKey(Topic, verbose_name=_('Topic'), on_delete=models.SET_NULL, null=True)
+    description = models.TextField(verbose_name=_('Description'), max_length=2000, null=False)
+    verse = models.TextField(verbose_name=_('Verse'), max_length=2000, unique=True, null=False)
+    date = models.DateField(verbose_name=_('Date'), null=True, blank=True, default='1399-04-01')
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+
+    class Meta:
+        verbose_name = _("Subject")
+        verbose_name_plural = _("Subjects")
+        ordering = ['description']
+        unique_together = ['topic', 'description']
+
+    def __str__(self):
+        return '%s: %s' % (self.topic, self.description)
+
+    def __unicode__(self):
+        return '%s: %s' % (self.topic, self.description)
+
+    def date_jalali(self):
+        return to_jalali_full(self.date)
+
+    date_jalali.short_description = _('Date')
 
 
 class Country(models.Model):

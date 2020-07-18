@@ -13,6 +13,18 @@ if (!String.prototype.format) {
     };
 }
 
+function setDirection() {
+    if (frames.length && frames[0].document && frames[0].document.getElementsByClassName('note-editable').length > 0) {
+        frames[0].document.getElementsByClassName('note-editable')[0].style.direction = 'rtl';
+        return;
+    }
+    setTimeout(function () {
+        setDirection();
+    }, 500);
+}
+
+setDirection();
+
 function truncateHTML(text, length) {
     var truncated = text.substring(0, length);
     // Remove line breaks and surrounding whitespace

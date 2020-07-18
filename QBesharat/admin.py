@@ -6,8 +6,9 @@ from django_summernote.models import Attachment
 from django.contrib.auth.admin import UserAdmin
 from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
+from django_summernote.admin import SummernoteModelAdmin
 from QBesharatSolution.utlis import register_operator, unregister_operator
-from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject
 
 
 def custom_titled_filter(title):
@@ -56,16 +57,29 @@ class TutorInline(admin.StackedInline):
 
 class CityInline(admin.TabularInline):
     model = City
+    fields = [('grade', 'course_duration', 'course_content'), 'courses', 'awards', 'certificates']
 
 
 @admin.register(Topic)
-class TopicAdmin(admin.ModelAdmin):
-    fields = ['name', 'active']
-    list_display = ['name', 'active']
-    list_display_links = ['name', 'active']
+class TopicAdmin(BaseModelAdmin):
+    fields = ['description', 'active']
+    list_display = ['description', 'active']
+    list_display_links = ['description', 'active']
     model = Topic
     list_filter = ['active']
-    search_fields = ['name', ]
+    search_fields = ['description', ]
+
+
+@admin.register(Subject)
+class SubjectAdmin(ModelAdminJalaliMixin, SummernoteModelAdmin, BaseModelAdmin):
+    summernote_fields = ('verse',)
+    fields = [('topic', 'date', 'active'), 'description', 'verse']
+    list_display = ['topic', 'description', 'date_jalali', 'active']
+    list_display_links = ['topic', 'description', 'date_jalali', 'active']
+    model = Subject
+    list_filter = ['active', 'topic', 'date']
+    search_fields = ['description', 'topic']
+    readonly_fields = ['date_jalali', ]
 
 
 @admin.register(Country)
