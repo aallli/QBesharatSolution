@@ -8,7 +8,7 @@ from jalali_date.admin import ModelAdminJalaliMixin
 from django.utils.translation import ugettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 from QBesharatSolution.utlis import register_operator, unregister_operator
-from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject, Network
+from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject, Network, Program
 
 
 def custom_titled_filter(title):
@@ -148,6 +148,17 @@ class NetworkAdmin(admin.ModelAdmin):
     model = Network
     list_filter = ['active']
     search_fields = ['name', ]
+
+
+@admin.register(Program)
+class ProgramAdmin(admin.ModelAdmin):
+    fields = ['name', 'network', ('poster', 'poster_tag'), 'count', 'active']
+    list_display = ['name', 'network', 'active']
+    list_display_links = ['name', 'network', 'active']
+    model = Program
+    list_filter = ['active', 'network']
+    search_fields = ['name', 'network']
+    readonly_fields = ['poster_tag',]
 
 
 admin.site.unregister(Attachment)

@@ -85,7 +85,8 @@
     margin-left: 25px;
 }
 
-.fieldBox.field-box.field-link_tag label {
+.fieldBox.field-box.field-link_tag label,
+.fieldBox.field-poster_tag label {
     display: none;
 }
 

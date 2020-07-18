@@ -58,7 +58,7 @@ class Subject(models.Model):
         return '%s: %s' % (self.topic, self.description)
 
     def date_jalali(self):
-        return to_jalali_full(self.date)
+        return to_jalali_full(self.date, True)
 
     date_jalali.short_description = _('Date')
 
@@ -106,7 +106,7 @@ class User(AbstractUser):
                            null=False)
     country = models.ForeignKey(Country, verbose_name=_('Country'), on_delete=models.SET_NULL, null=True, blank=True)
     city = models.ForeignKey(City, verbose_name=_('City'), on_delete=models.SET_NULL, null=True, blank=True)
-    birth_date = models.DateField(verbose_name=_('Birth Date'), null=True, blank=True, default='1980-01-01')
+    birth_date = models.DateField(verbose_name=_('Birth Date'), null=True, blank=True, default='1360-01-01')
     image = ResizedImageField(size=[settings.MAX_SMALL_IMAGE_WIDTH, settings.MAX_SMALL_IMAGE_HEIGHT],
                               verbose_name=_('Profile Image'), upload_to=settings.MEDIA_URL[1:len(settings.MEDIA_URL)],
                               blank=True, null=True)
@@ -270,3 +270,89 @@ class Network(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Program(models.Model):
+    name = models.CharField(verbose_name=_('Name'), max_length=1000, unique=True, null=False)
+    network = models.ForeignKey(Network, verbose_name=_('Network'), on_delete=models.SET_NULL, null=True)
+    poster = ResizedImageField(size=[settings.MAX_MEDIUM_IMAGE_WIDTH, settings.MAX_MEDIUM_IMAGE_HEIGHT],
+                              verbose_name=_('Poster'), upload_to=settings.MEDIA_URL[1:len(settings.MEDIA_URL)],
+                              blank=True, null=True)
+    count = models.IntegerField(verbose_name=_('Count'), default=60, blank=False)
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+
+    class Meta:
+        verbose_name = _("Program")
+        verbose_name_plural = _("Programs")
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
+
+    def production_date_jalali(self):
+        return to_jalali_full(self.production_date, True)
+
+    production_date_jalali.short_description = _('Production Date')
+
+    @property
+    def poster_data(self):
+        if self.poster:
+            self.poster.open()
+            return 'data:image/jpeg;base64,%s' % base64.b64encode(self.poster.read()).decode("utf-8")
+        else:
+            return None
+
+    def poster_tag(self):
+        if self.poster:
+            return mark_safe(
+                '<a href="%s%s" target="_blank"><img src="%s%s" title="%s" alt="%s" style="max-width:%spx;max-height:%spx;"/></a>' % (
+                    settings.MEDIA_URL, self.poster, settings.MEDIA_URL, self.poster, self, self,
+                    settings.MAX_SMALL_IMAGE_WIDTH, settings.MAX_SMALL_IMAGE_HEIGHT))
+        else:
+            return mark_safe('<img src="%simg/person-icon.jpg" width="150" height="150" title="%s" alt="%s"/>' % (
+                settings.STATIC_URL, self.name, self.name))
+
+
+@receiver(models.signals.post_delete, sender=Program)
+def auto_delete_program_image_on_delete(sender, instance, **kwargs):
+    """
+    Deletes poster from filesystem
+    when corresponding `Program` object is deleted.
+    """
+    if instance.poster.name:
+        try:
+            if os.path.isfile(instance.poster.path):
+                os.remove(instance.poster.path)
+        except Exception as e:
+            print('Delete error: %s' % e.args[0])
+
+
+@receiver(models.signals.pre_save, sender=Program)
+def auto_delete_program_image_on_change(sender, instance, **kwargs):
+    """
+    Deletes old poster from filesystem
+    when corresponding `Program` object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
+
+    try:
+        old_poster = Program.objects.get(pk=instance.pk).poster
+    except Program.DoesNotExist:
+        return False
+
+    if not old_poster.name:
+        return False
+
+    new_poster = instance.poster
+    try:
+        if not old_poster == new_poster:
+            if os.path.isfile(old_poster.path):
+                os.remove(old_poster.path)
+    except Exception as e:
+        print('Delete error: %s' % e.args[0])
+        return False

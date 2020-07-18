@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 12:02+0430\n"
+"POT-Creation-Date: 2020-07-18 12:33+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,11 +75,11 @@ msgstr "مدیریت سامانه تعاملی قرآنیان"
 msgid "Welcome to QBesharat administration control panel"
 msgstr "به بخش مدیریت سامانه تعاملی قرآنیان خوش آمدید."
 
-#: .\QBesharatSolution\utlis.py:96
+#: .\QBesharatSolution\utlis.py:98
 msgid "Subscribing user in chat server failed. Try later"
 msgstr "ایجاد اپراتور پشتیبانی انجام نشد! لطفا مجدد تلاش کنید."
 
-#: .\QBesharatSolution\utlis.py:112
+#: .\QBesharatSolution\utlis.py:114
 msgid "Unsubscribing user from chat server failed. Try later"
 msgstr "حذف اپراتور پشتیبانی انجام نشد! لطفا مجدد تلاش کنید."
 
@@ -123,7 +123,7 @@ msgid "Description"
 msgstr "شرج"
 
 #: .\QBesharat\models.py:27 .\QBesharat\models.py:46 .\QBesharat\models.py:68
-#: .\QBesharat\models.py:85 .\QBesharat\models.py:261
+#: .\QBesharat\models.py:85 .\QBesharat\models.py:261 .\QBesharat\models.py:282
 msgid "Active"
 msgstr "فعال"
 
@@ -154,6 +154,7 @@ msgid "Subjects"
 msgstr "موضوعات"
 
 #: .\QBesharat\models.py:67 .\QBesharat\models.py:83 .\QBesharat\models.py:260
+#: .\QBesharat\models.py:276
 msgid "Name"
 msgstr "نام"
 
@@ -321,13 +322,37 @@ msgstr "محتوای دوره آموزشی"
 msgid "Tutors skill"
 msgstr "مهارتهای تدریس"
 
-#: .\QBesharat\models.py:264
+#: .\QBesharat\models.py:264 .\QBesharat\models.py:277
 msgid "Network"
 msgstr "شبکه"
 
 #: .\QBesharat\models.py:265
 msgid "Networks"
 msgstr "شبکه ها"
+
+#: .\QBesharat\models.py:279
+msgid "Poster"
+msgstr "پوستر"
+
+#: .\QBesharat\models.py:281
+#, fuzzy
+#| msgid "Country"
+msgid "Count"
+msgstr "تعداد"
+
+#: .\QBesharat\models.py:285
+msgid "Program"
+msgstr "برنامه"
+
+#: .\QBesharat\models.py:286
+msgid "Programs"
+msgstr "برنامه ها"
+
+#: .\QBesharat\models.py:298
+#, fuzzy
+#| msgid "Creation Date"
+msgid "Production Date"
+msgstr "تاریخ تولید"
 
 #: .\QBesharat\utils.py:3
 msgid "welcome"
