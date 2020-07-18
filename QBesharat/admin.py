@@ -58,7 +58,7 @@ class TutorInline(admin.StackedInline):
 
 class CityInline(admin.TabularInline):
     model = City
-    fields = [('grade', 'course_duration', 'course_content'), 'courses', 'awards', 'certificates']
+    fields = ['name', 'active']
 
 
 @admin.register(Topic)
@@ -84,7 +84,7 @@ class SubjectAdmin(ModelAdminJalaliMixin, SummernoteModelAdmin, BaseModelAdmin):
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(BaseModelAdmin):
     fields = ['name', 'active']
     list_display = ['name', 'active']
     list_display_links = ['name', 'active']
