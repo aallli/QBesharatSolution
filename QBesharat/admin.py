@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 from QBesharatSolution.utlis import register_operator, unregister_operator
 from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject, Network, Program, \
-    Episod
+    Episod, Platform
 
 
 def custom_titled_filter(title):
@@ -171,6 +171,16 @@ class EpisodAdmin(ModelAdminJalaliMixin, BaseModelAdmin):
     list_filter = ['active', ('program__name', custom_titled_filter(_('Program'))), 'publish_date']
     search_fields = ['program', 'network']
     readonly_fields = ['publish_date_jalali', ]
+
+
+@admin.register(Platform)
+class PlatformAdmin(admin.ModelAdmin):
+    fields = ['name', 'active']
+    list_display = ['name', 'active']
+    list_display_links = ['name', 'active']
+    model = Platform
+    list_filter = ['active']
+    search_fields = ['name', ]
 
 
 admin.site.unregister(Attachment)

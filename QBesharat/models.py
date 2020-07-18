@@ -379,3 +379,19 @@ class Episod(models.Model):
         return to_jalali_full(self.publish_date, True)
 
     publish_date_jalali.short_description = _('Publish Date')
+
+
+class Platform(models.Model):
+    name = models.CharField(verbose_name=_('Name'), max_length=200, unique=True, null=False)
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+
+    class Meta:
+        verbose_name = _("Platform")
+        verbose_name_plural = _("Platforms")
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
