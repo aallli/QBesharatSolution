@@ -254,3 +254,19 @@ class Tutor(models.Model):
     class Meta:
         verbose_name = _("Tutor skill")
         verbose_name_plural = _("Tutors skill")
+
+
+class Network(models.Model):
+    name = models.CharField(verbose_name=_('Name'), max_length=200, unique=True, null=False)
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+
+    class Meta:
+        verbose_name = _("Network")
+        verbose_name_plural = _("Networks")
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
