@@ -45,8 +45,8 @@ def is_online_support_operator(request):
         try:
             get_operator(request, True)
         except:
-            session['operator'] = None
-    return session['operator'] is not None
+            pass
+    return 'operator' in session and session['operator'] is not None
 
 
 @register.simple_tag()
