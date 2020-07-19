@@ -5,7 +5,7 @@ from jalali_date import datetime2jalali
 from django.utils.translation import ugettext_lazy as _
 
 
-def to_jalali_full(date, no_time):
+def to_jalali_full(date, no_time=False):
     if no_time:
         return datetime2jalali(date).strftime('%Y/%m/%d')
     else:
