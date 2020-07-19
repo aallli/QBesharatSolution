@@ -395,3 +395,22 @@ class Platform(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class EndPoint(models.Model):
+    platform = models.ForeignKey(Platform, verbose_name=_('Platform'), on_delete=models.CASCADE)
+    url = models.CharField(verbose_name=_('URL'), max_length=2000, unique=True, null=False)
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+    episod = models.ForeignKey(Episod, verbose_name=_('Episod'), on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _("EndPoint")
+        verbose_name_plural = _("EndPoint")
+        ordering = ['platform', 'url']
+
+    def __str__(self):
+        return self.platform.name
+
+    def __unicode__(self):
+        return self.platform.name
+

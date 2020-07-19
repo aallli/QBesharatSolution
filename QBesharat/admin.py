@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 from QBesharatSolution.utlis import register_operator, unregister_operator
 from QBesharat.models import User, City, Country, Memorizer, Qari, Concepts, Tutor, Topic, Subject, Network, Program, \
-    Episod, Platform
+    Episod, Platform, EndPoint
 
 
 def custom_titled_filter(title):
@@ -56,13 +56,19 @@ class TutorInline(admin.StackedInline):
     insert_after_fieldset = _('Address Info')
 
 
-class CityInline(admin.TabularInline):
+class CityInline(admin.StackedInline):
     model = City
     fields = ['name', 'active']
 
 
+class EndPointInline(admin.TabularInline):
+    model = EndPoint
+    verbose_name = _("Endpoint for Episode")
+    verbose_name_plural = _("Endpoints for Episode")
+
+
 @admin.register(Topic)
-class TopicAdmin(BaseModelAdmin):
+class TopicAdmin(admin.ModelAdmin):
     fields = ['description', 'active']
     list_display = ['description', 'active']
     list_display_links = ['description', 'active']
@@ -171,6 +177,7 @@ class EpisodAdmin(ModelAdminJalaliMixin, BaseModelAdmin):
     list_filter = ['active', ('program__name', custom_titled_filter(_('Program'))), 'publish_date']
     search_fields = ['program', 'network']
     readonly_fields = ['publish_date_jalali', ]
+    inlines = [EndPointInline, ]
 
 
 @admin.register(Platform)

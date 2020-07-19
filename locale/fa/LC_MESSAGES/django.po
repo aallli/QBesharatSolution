@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 13:56+0430\n"
+"POT-Creation-Date: 2020-07-19 08:23+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,33 +84,41 @@ msgid "Unsubscribing user from chat server failed. Try later"
 msgstr "حذف اپراتور پشتیبانی انجام نشد! لطفا مجدد تلاش کنید."
 
 #: .\QBesharat\admin.py:36 .\QBesharat\admin.py:43 .\QBesharat\admin.py:50
-#: .\QBesharat\admin.py:56 .\QBesharat\admin.py:114
+#: .\QBesharat\admin.py:56 .\QBesharat\admin.py:120
 msgid "Address Info"
 msgstr "نشانی ها"
 
-#: .\QBesharat\admin.py:81 .\QBesharat\models.py:30 .\QBesharat\models.py:42
+#: .\QBesharat\admin.py:66
+msgid "Endpoint for Episode"
+msgstr "محل انتشار"
+
+#: .\QBesharat\admin.py:67
+msgid "Endpoints for Episode"
+msgstr "محلهای انتشار"
+
+#: .\QBesharat\admin.py:87 .\QBesharat\models.py:30 .\QBesharat\models.py:42
 msgid "Topic"
 msgstr "سرفصل"
 
-#: .\QBesharat\admin.py:110
+#: .\QBesharat\admin.py:116
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: .\QBesharat\admin.py:116
+#: .\QBesharat\admin.py:122
 msgid "Important dates"
 msgstr "تاریخهای مهم"
 
-#: .\QBesharat\admin.py:118
+#: .\QBesharat\admin.py:124
 #, fuzzy
 #| msgid "Version"
 msgid "Permissions"
 msgstr "ویرایش"
 
-#: .\QBesharat\admin.py:120
+#: .\QBesharat\admin.py:126
 msgid "Sensitive Info"
 msgstr "اطلاعات حساس"
 
-#: .\QBesharat\admin.py:171 .\QBesharat\models.py:285 .\QBesharat\models.py:362
+#: .\QBesharat\admin.py:177 .\QBesharat\models.py:285 .\QBesharat\models.py:362
 msgid "Program"
 msgstr "برنامه"
 
@@ -128,11 +136,12 @@ msgstr "زن"
 
 #: .\QBesharat\models.py:26 .\QBesharat\models.py:43
 msgid "Description"
-msgstr "شرج"
+msgstr "شرح"
 
 #: .\QBesharat\models.py:27 .\QBesharat\models.py:46 .\QBesharat\models.py:68
 #: .\QBesharat\models.py:85 .\QBesharat\models.py:261 .\QBesharat\models.py:282
 #: .\QBesharat\models.py:365 .\QBesharat\models.py:386
+#: .\QBesharat\models.py:403
 msgid "Active"
 msgstr "فعال"
 
@@ -365,7 +374,7 @@ msgstr "تاریخ تولد"
 msgid "Duration (min)"
 msgstr "مدت (دقیقه)"
 
-#: .\QBesharat\models.py:368
+#: .\QBesharat\models.py:368 .\QBesharat\models.py:404
 msgid "Episod"
 msgstr "قسمت برنامه"
 
@@ -373,13 +382,21 @@ msgstr "قسمت برنامه"
 msgid "Episods"
 msgstr "قسمتهای برنامه"
 
-#: .\QBesharat\models.py:389
+#: .\QBesharat\models.py:389 .\QBesharat\models.py:401
 msgid "Platform"
 msgstr "پلتفرم انتشار"
 
 #: .\QBesharat\models.py:390
 msgid "Platforms"
 msgstr "پلتفرمهای انتشار"
+
+#: .\QBesharat\models.py:402
+msgid "URL"
+msgstr "نشانی اینترنتی"
+
+#: .\QBesharat\models.py:407 .\QBesharat\models.py:408
+msgid "EndPoint"
+msgstr "لینک پخش"
 
 #: .\QBesharat\utils.py:3
 msgid "welcome"
